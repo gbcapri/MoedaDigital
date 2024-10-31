@@ -1,0 +1,79 @@
+comandos atualizados
+
+
+cd projetoslions/
+
+git clone https://github.com/gbcapri/locadora.git
+
+cd locadora/
+(o -y serve somente para aceitar tudo de uma vez)
+
+npm init -y
+npm i express
+npm i mongoose
+npm i nodemon --save-dev       
+npm i dotenv
+npm i jsonwebtoken
+code .
+
+ou npm i nodemon -D
+
+PARA WEBTOKEN
+
+node
+require('crypto').randomBytes(64).toString("hex")
+
+
+
+
+OUTROS COMANDOS POSSÍVEIS
+
+
+
+
+
+
+
+cd projetoslions/
+
+git clone https://github.com/gbcapri/crudDaAleatoriedade.git
+
+cd crudDaAleatoriedade/
+
+npm init
+
+npm i nodemon
+
+npm i nodemon --save-dev
+
+npm i express
+
+npm i axios
+
+npm i mongoose
+
+npm i jsonwebtoken
+
+npm i dotenv
+
+npm uninstall nomedopacote
+
+npm i jest -D
+
+npm create vue@latest
+
+
+----------------------------------------------------
+SE TIVER VULNERABILIDADES
+
+npm audit fix --force
+
+SE NÃO DER CERTO SÓ REZA
+
+-----------------------------------------------------
+COM O CÓDIGO TERMINADO COLOCAR NO TERMINAL 
+npm run dev
+
+colocar as informações no postman
+entrar no mongodb para ver os resultados
+

@@ -1,5 +1,5 @@
 import { verifyToken } from "../services/jwt-service.js";
-import User from "../models/user-model.js";
+import User from "../models/user_model.js";
 
 export default async (req, res, next) => {
   try {

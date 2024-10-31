@@ -1,6 +1,4 @@
-import conn from "../conn.js";
-
-const Schema = conn.Schema;
+import { Schema, model } from "mongoose";
 
 const rechargeSchema = new Schema({
   value: {
@@ -36,6 +34,5 @@ const walletSchema = new Schema({
   },
 });
 
-const User = conn.model("User", walletSchema);
-
-export default User;
+const Wallet = model("Wallet", walletSchema);
+export default Wallet;

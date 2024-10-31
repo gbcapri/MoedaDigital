@@ -1,11 +1,9 @@
 import { Router } from "express";
 import {
-  destroy,
   index,
   show,
-  store,
-  update,
-} from "../controllers/wallet_controller.js";
+  createTransaction,
+} from "../controllers/transaction_controller.js";
 import authorizer from "../middlewares/authorizer.js";
 import authenticator from "../middlewares/authenticator.js";
 
@@ -17,9 +15,7 @@ router.use(authorizer(["ADMINISTRATOR", "SUPPORT"]));
 
 router.get("/", index);
 router.get("/:id", show);
-router.post("/", store);
-router.put("/:id", update);
-router.delete("/:id", destroy);
+router.post("/:id", createTransaction);
 
 
 export default router;

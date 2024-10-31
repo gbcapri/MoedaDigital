@@ -7,7 +7,7 @@ import {
   show,
   store,
   update,
-} from "../controllers/user-controller.js";
+} from "../controllers/user_controller.js";
 import authorizer from "../middlewares/authorizer.js";
 import authenticator from "../middlewares/authenticator.js";
 

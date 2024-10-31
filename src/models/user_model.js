@@ -1,7 +1,7 @@
-import db from "../db.js";
+import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
 
-const userSchema = new db.Schema({
+const userSchema = new Schema({
   name: {
     type: Schema.Types.String,
     required: true,
@@ -32,9 +32,9 @@ const userSchema = new db.Schema({
     required: true,
     unique: true,
   },
-  wallets: {
+  wallet: {
     type: Schema.Types.ObjectId,
-    ref: "Wallets",
+    ref: "Wallet",
     required: true
   },
   role: {
@@ -57,6 +57,8 @@ userSchema.methods.isValidPassword = async function(password) {
   return await bcrypt.compare(password, this.password)
 }
 
-const User = db.model("User", userSchema);
+const User = model("User", userSchema);
 
 export default User;
+
+

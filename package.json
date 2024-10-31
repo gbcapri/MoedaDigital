@@ -2,16 +2,21 @@
   "name": "moedadigital",
   "version": "1.0.0",
   "description": "O desafio consiste em construir uma API REST em Node.js que implemente funcionalidades essenciais para uma moeda eletrônica. As funcionalidades incluem: Cadastro de Usuário (Sign Up): Permitir que novos usuários se registrem, criando suas contas e carteiras digitais. Autenticação de Usuário (Login): Gerar um token JWT para os usuários logados. Consulta de Saldo: Um endpoint protegido que permita a consulta do saldo de uma carteira digital. Transferência de Moeda: Implementar a transferência de moedas entre usuários, garantindo validações adequadas (e.g., saldo suficiente). Histórico de Transações: Listar as transações realizadas pelo usuário. Depósito de Moeda (Opcional): Adicionar saldo à conta por meio de um administrador ou serviço de pagamento. Conversão de Moeda (Opcional): Permitir conversão entre diferentes moedas ou tokens. Encerramento de Conta: Função para o usuário encerrar sua conta e sacar seus fundos.",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3"
   },
   "devDependencies": {

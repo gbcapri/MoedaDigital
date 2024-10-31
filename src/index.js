@@ -1,7 +1,7 @@
 import e from "express";
 import "dotenv/config";
 import "./config/db.js";
-import transation_route from "./routes/transation_route.js";
+import transation_route from "./routes/transaction_route.js";
 import user_route from "./routes/user_route.js";
 import wallet_route from "./routes/wallet_route.js";
 
@@ -14,3 +14,6 @@ app.use("/user", user_route);
 app.use("/wallet", wallet_route);
 
 app.listen(process.env.API_PORT, () => console.log("Servidor rodando"));
+
+//npm run dev
+//http://localhost:5000/user
