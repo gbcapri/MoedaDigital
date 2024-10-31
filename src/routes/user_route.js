@@ -1,22 +1,29 @@
 import { Router } from "express";
 import {
+  login,
+  signup,
   destroy,
   index,
   show,
   store,
   update,
-  signup,
-  login,
-} from "../controllers/user_controller.js";
+} from "../controllers/user-controller.js";
+import authorizer from "../middlewares/authorizer.js";
+import authenticator from "../middlewares/authenticator.js";
 
 const router = Router();
 
-router.post("/", user_controller.store)
-router.get("/", user_controller.index)
-router.get("/:id", user_controller.show)
-router.put("/:id", user_controller.update)
-router.delete("/:id", user_controller.destroy)
+router.post("/login", login);
+router.post("/signup", signup);
 
-export default router
+router.use(authenticator);
 
+router.use(authorizer(["ADMINISTRATOR", "SUPPORT"]));
 
+router.get("/", index);
+router.get("/:id", show);
+router.post("/", store);
+router.put("/:id", update);
+router.delete("/:id", destroy);
+
+export default router;

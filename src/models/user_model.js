@@ -1,18 +1,6 @@
 import db from "../db.js";
 import bcrypt from "bcrypt";
 
-const depositSchema = new Schema({
-    value: {
-      type: Schema.Types.Number,
-      min: 1,
-    },
-    status: {
-      type: Schema.Types.String,
-      enum: ["FINISHED", "PENDING", "REFUSED", "CANCELLED"],
-      default: "PENDING",
-    },
-  });
-
 const userSchema = new db.Schema({
   name: {
     type: Schema.Types.String,
@@ -64,6 +52,10 @@ const userSchema = new db.Schema({
 userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 10);
 });
+
+userSchema.methods.isValidPassword = async function(password) {
+  return await bcrypt.compare(password, this.password)
+}
 
 const User = db.model("User", userSchema);
 
