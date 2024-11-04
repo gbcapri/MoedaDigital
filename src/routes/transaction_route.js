@@ -11,11 +11,11 @@ const router = Router();
 
 router.use(authenticator);
 
+router.post("/:id", createTransaction);
+
 router.use(authorizer(["ADMINISTRATOR", "SUPPORT"]));
 
 router.get("/", index);
 router.get("/:id", show);
-router.post("/:id", createTransaction);
-
 
 export default router;

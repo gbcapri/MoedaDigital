@@ -3,16 +3,20 @@ import User from "../models/user_model.js";
 
 export const store = async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId).exec();
+    const userId = req.user._id;
+
+    const user = await User.findById(userId).exec();
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+
     const wallet = await Wallet.create({
-      userId: req.body.userId,
+      userId: userId,
       currency: req.body.currency,
       balance: 0,
       createdAt: new Date(),
     });
+
     res.status(201).json(wallet);
   } catch (error) {
     res.status(400).send(error);
