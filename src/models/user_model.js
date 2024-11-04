@@ -3,9 +3,8 @@ import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
   name: {
-    type: Schema.Types.String,
+    type: String,
     required: true,
-    unique: true,
   },
   email: {
     type: Schema.Types.String,
@@ -27,15 +26,10 @@ const userSchema = new Schema({
       },
     },
   },
-  createdAt: {
-    type: Schema.Types.Date,
-    required: true,
-    unique: true,
-  },
   wallet: {
     type: Schema.Types.ObjectId,
     ref: "Wallet",
-    required: true
+    required: false,
   },
   role: {
     type: String,
@@ -47,6 +41,9 @@ const userSchema = new Schema({
     type: Boolean,
     unique: true,
   }
+},
+{
+  timestamps: true
 });
 
 userSchema.pre("save", async function () {

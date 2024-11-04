@@ -50,14 +50,19 @@ export const destroy = async (req, res) => {
 
 export const signup = async (req, res) => {
   try {
-    const content = await User.create({
-      email: req.body.email,
-      password: req.body.password,
+    const { name, email, password, role, isActive } = req.body;
+
+    const newUser = await User.create({
+      name,
+      email,
+      password,
+      role: role || "USUARIO",
+      isActive: isActive !== undefined ? isActive : true,
     });
 
-    res.status(201).json(content);
+    res.status(201).json(newUser);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).json({ message: error.message });
   }
 };
 
