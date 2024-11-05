@@ -50,33 +50,37 @@ export const destroy = async (req, res) => {
 
 export const signup = async (req, res) => {
   try {
-    const { name, email, password, role, isActive } = req.body;
+    const { email, password } = req.body;
+    const user = await User.create({ email, password });
 
-    const newUser = await User.create({
-      name,
-      email,
-      password,
-      role: role || "USUARIO",
-      isActive: isActive !== undefined ? isActive : true,
+    const token = generateToken(user);
+
+    res.status(201).json({
+      token,
     });
-
-    res.status(201).json(newUser);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(500).send(error.message);
   }
 };
 
 export const login = async (req, res) => {
   try {
+    const { email, password } = req.body;
+
     const user = await User.findOne({
-      email: req.body.email,
+      email,
     });
 
-    if(!user) {
+    if (user && (await user.isValidPassword(password))) {
+      const token = generateToken(user);
+
+      res.json({
+        token,
+      });
+    } else {
       res.sendStatus(404);
     }
-    res.json();
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error.message);
   }
 };
